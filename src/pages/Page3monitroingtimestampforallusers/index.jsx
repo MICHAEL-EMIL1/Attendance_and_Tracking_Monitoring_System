@@ -1,150 +1,163 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import { Heading, Img } from "../../components";
-import Page3MonitroingScrollbar from "../../components/Page3MonitroingScrollbar";
-import { ReactTable } from "../../components/ReactTable";
-import { createColumnHelper } from "@tanstack/react-table";
+import { Img, SelectBox, Button, Text, Input, Heading } from "../../components";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const table1Data = [
-  { name: "X", id: "20", entertime: "8 AM", exittime: "9:30AM" },
-  { name: "Y", id: "1580", entertime: "8:15 AM", exittime: "9:00AM" },
-  { name: "Z", id: "900", entertime: "9 AM", exittime: "9:20 AM" },
-  { name: "M", id: "80", entertime: "8:45 AM", exittime: "9:10 AM" },
-];
+export default function Page3monitroingPage() {
+  // Sample data for the table
+  const sampleData = Array.from({ length: 1000 }, (_, i) => ({
+    id: i + 1,
+    firstName: `First ${i + 1}`,
+    middleName: `Middle ${i + 1}`,
+    lastName: `Last ${i + 1}`,
+    email: `email${i + 1}@example.com`,
+    password: `password${i + 1}`,
+    ssn: `SSN-${i + 1}`,
+    token: `Token-${i + 1}`,
+    role: Math.random() > 0.5 ? "Admin" : "User",
+  }));
 
-export default function Page3monitroingtimestampforallusersPage() {
-  const table1Columns = React.useMemo(() => {
-    const table1ColumnHelper = createColumnHelper();
-    return [
-      table1ColumnHelper.accessor("name", {
-        cell: (info) => (
-          <div className="flex items-start gap-[3px]">
-            <Img
-              src="images/img_user_scan_duotone_line.svg"
-              alt="userscan_one"
-              className="h-[30px] w-[29px] mt-4 mb-[17px]"
-            />
-            <Heading as="h5" className="mt-4 tracking-[0.40px]">
-              {info?.getValue?.()}
-            </Heading>
-          </div>
-        ),
-        header: (info) => (
-          <Heading as="h3" className="pl-[35px] sm:pl-5">
-            Name
-          </Heading>
-        ),
-        meta: { width: "246px" },
-      }),
-      table1ColumnHelper.accessor("id", {
-        cell: (info) => <Heading as="h5">{info?.getValue?.()}</Heading>,
-        header: (info) => (
-          <Heading as="h4" className="pl-[11px]">
-            ID
-          </Heading>
-        ),
-        meta: { width: "193px" },
-      }),
-      table1ColumnHelper.accessor("entertime", {
-        cell: (info) => <Heading as="h5">{info?.getValue?.()}</Heading>,
-        header: (info) => (
-          <Heading as="h5" className="tracking-[1.00px]">
-            Enter time
-          </Heading>
-        ),
-        meta: { width: "293px" },
-      }),
-      table1ColumnHelper.accessor("exittime", {
-        cell: (info) => <Heading as="h5">{info?.getValue?.()}</Heading>,
-        header: (info) => (
-          <Heading as="h6" className="pl-1.5 tracking-[1.00px]">
-            Exit time
-          </Heading>
-        ),
-        meta: { width: "596px" },
-      }),
-    ];
-  }, []);
+  // State for search value
+  const [searchValue, setSearchValue] = useState("");
 
+  // Filtered data based on search value
+  const filteredData = sampleData.filter(
+    (item) =>
+      item.id.toString().includes(searchValue) ||
+      item.firstName.toLowerCase().includes(searchValue.toLowerCase()) ||
+      item.middleName.toLowerCase().includes(searchValue.toLowerCase()) ||
+      item.lastName.toLowerCase().includes(searchValue.toLowerCase()) ||
+      item.email.toLowerCase().includes(searchValue.toLowerCase()) ||
+      item.password.toLowerCase().includes(searchValue.toLowerCase()) ||
+      item.ssn.toLowerCase().includes(searchValue.toLowerCase()) ||
+      item.token.toLowerCase().includes(searchValue.toLowerCase()) ||
+      item.role.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
+  const handleLogin = () => {
+    // Navigate to the home page upon login
+    navigate("/AddUsers");
+  };
   return (
     <>
       <Helmet>
         <title>Attendance & tracking monitoring system</title>
         <meta name="description" content="Web site created using create-react-app" />
       </Helmet>
-      <div className="flex flex-col w-full pb-10 gap-[9px] sm:pb-5 bg-white-A700_01">
-        <header className="flex justify-center items-center p-2.5 bg-indigo-800">
-          <div className="flex flex-col items-center justify-center w-[80%] mt-[7px] mr-[22px] gap-[7px]">
-            <div className="flex md:flex-col self-stretch justify-between items-start gap-5">
-              <div className="flex w-[68%] md:w-full mb-1.5 pt-[3px]">
-                <div className="flex flex-col w-full">
-                  <div className="flex sm:flex-col justify-between items-center w-[96%] md:w-full gap-5">
-                    <a href="../Home1" className="self-start">
-                        <Heading size="md" as="h4" className="!text-blue_gray-100 !font-saira">
-                          Home
-                        </Heading>
-                    </a>
-                    <a href="../Page3monitroing" className="self-start">
-                        <Heading size="md" as="h4" className="!text-blue_gray-100 !font-saira">
-                          Monitoring AP
-                        </Heading>
-                    </a>
-                    <a href="../user1" className="self-start">
-                        <Heading size="md" as="h4" className="!text-blue_gray-100 !font-saira">
-                          Users
-                        </Heading>
-                    </a>
-                    <a href="#" className="self-start">
-                        <Heading size="md" as="h4" className="!text-blue_gray-100 !font-saira">
-                        Modify Users
-                        </Heading>
-                    </a>
-                    <a href="#" className="self-start">
-                      <Heading size="md" as="h4" className="!text-blue_gray-100 !font-saira">
-                        New Reservation
-                      </Heading>
-                    </a>
-                  </div>
-                  <div className="h-px bg-white-A700_01" />
-                </div>
-              </div>
-              <Heading size="md" as="h4" className="mt-[13px] !text-white-A700_01 !font-saira">
-                Monitoring Users
-              </Heading>
-            </div>
-          </div>
-        </header>
-        <div className="w-full mx-auto md:p-5 max-w-[1357px]">
-          <div className="flex flex-col gap-5">
-            <div className="flex flex-col items-start ml-[58px] gap-[15px]">
-              <div className="flex items-center">
-                <Img src="images/img_group_fill.svg" alt="image" className="h-[24px] w-[24px]" />
-                <Heading size="xs" as="h1" className="self-end tracking-[2.00px] !font-roboto">
-                  Number of participation : 40
+      <header className="p-1 bg-indigo-800">
+        <div className="flex md:flex-col justify-between items-center w-full mt-3.5 gap-5 mx-auto md:p-5 max-w-[1223px]">
+          <div className="flex flex-col items-center w-[78%] md:w-full">
+            <div className="flex sm:flex-col justify-between w-[98%] md:w-full gap-5">
+              <a href="../Home1" className="self-start">
+                <Heading size="md" as="h4" className="!text-gray-300 !font-saira">
+                  Home
                 </Heading>
-              </div>
-              <div className="flex items-center gap-[5px]">
-                <Img src="images/img_flag_finish_fill.svg" alt="flagfinish_one" className="h-[24px] w-[24px]" />
-                <Heading size="xs" as="h2" className="tracking-[2.00px] !font-roboto">
-                  Event name : IOT Lecture{" "}
+              </a>
+              <a href="../Page3monitroing">
+                <Heading size="md" as="h4" className="self-start !text-gray-200_01 !font-saira">
+                  Monitoring AP
                 </Heading>
-              </div>
+              </a>
+              <a href="../user1">
+                <Heading size="md" as="h4" className="!text-gray-300 !font-saira">
+                  User Management
+                </Heading>
+              </a>
+              <a href="../ModifyUsers">
+                <Heading size="md" as="h4" className="self-start !text-gray-200_01 !font-saira">
+                  Modify Users
+                </Heading>
+              </a>
+              <a href="../NewReservation">
+                <Heading size="md" as="h4" className="!text-gray-300 !font-saira">
+                  New Reservation
+                </Heading>
+              </a>
             </div>
-            <div className="h-[593px] p-3.5 border-black-900 border border-solid bg-gray-200_02 shadow-bs relative">
-              <div className="justify-center h-[561px] w-full left-0 bottom-0 right-0 top-0 m-auto absolute">
-                <ReactTable
-                  size="sm"
-                  bodyProps={{ className: "" }}
-                  headerProps={{ className: "md:flex-col" }}
-                  rowDataProps={{ className: "md:flex-col" }}
-                  className="justify-center w-[1328px] left-0 bottom-0 right-0 top-0 m-auto bg-white-A700 absolute"
-                  columns={table1Columns}
-                  data={table1Data}
-                />
-                <Page3MonitroingScrollbar className="flex flex-col items-center justify-center w-[17px] h-max gap-[254px] right-0 bottom-0 top-0 p-0.5 my-auto bg-gray-100_01 absolute" />
-              </div>
-            </div>
+            <div className="self-stretch h-px mt-[3px] bg-white-A700_01" />
           </div>
+          <Heading size="md" as="h4" className="mt-3.5 mb-3.5 !text-white-A700_01 !font-saira">
+            Monitoring Users
+          </Heading>
+        </div>
+      </header>
+      <div className="p-5 ">
+        <div className="mb-4">
+          <Input
+            color="white_A700_01"
+            size="sm"
+            shape="square"
+            name="search"
+            placeholder="Search by Room ID or Name..."
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            className="w-[18%] mr-[26px] gap-[35px] tracking-[2.00px] uppercase border-black-900 border-2 border-solid"
+          />
+        </div>
+        <div className="ml-[1250px] mt-[-60px] mb-[15px]">
+          <Button
+            onClick={handleLogin}
+            size="md"
+            leftIcon={<Img src="images/img_vector.svg" alt="Vector" />}
+            className="gap-[17px] sm:pr-5 tracking-[1.00px] font-roboto min-w-[169px] rounded-[24px]"
+            >
+            Add User
+          </Button>
+        </div>
+        <div className="h-[650px] overflow-y-auto border border-gray-300 rounded">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="sticky top-0 bg-gray-50">
+              <tr>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  ID
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  First Name
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Middle Name
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Last Name
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Email
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Password
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  SSN
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Token
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Role
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {filteredData.map((row) => (
+                <tr key={row.id}>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <Link to={`../ModifyUsers`}>{row.id}</Link> {/* ${row.id}*/}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.firstName}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.middleName}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.lastName}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.email}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.password}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.ssn}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.token}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.role}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </>

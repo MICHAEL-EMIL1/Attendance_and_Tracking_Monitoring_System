@@ -47,7 +47,7 @@ export default function LOGINPage() {
                   placeholder="Password"
                   className="mt-[22px] sm:pr-5 p-5"
                 />
-                <div className="flex justify-between mt-8 ml-6 pb-[12px] gap-5 sm:pb-3 sm:pr-5">
+                <div className="flex justify-between mt-8 ml-5 pb-[12px] gap-5 sm:pb-3 sm:pr-5">
                   <CheckBox
                     shape="square"
                     name="rememberme"
@@ -55,9 +55,6 @@ export default function LOGINPage() {
                     id="rememberme"
                     className="gap-2 text-gray-900_01 font-roboto text-left"
                   />
-                  <a href="#" className="text-indigo-600 hover:underline">
-                    Forgot Password?
-                  </a>
                 </div>
               </div>
               <Button

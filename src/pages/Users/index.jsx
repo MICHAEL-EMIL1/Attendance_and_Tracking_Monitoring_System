@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { CloseSVG } from "../../assets/images";
 import { Img, SelectBox, Button, Text, Input, Heading } from "../../components";
+import { useNavigate } from "react-router-dom";
 
 const dropDownOptions = [
   { label: "Option1", value: "option1" },
@@ -11,7 +12,12 @@ const dropDownOptions = [
 
 export default function UsersPage() {
   const [searchBarValue, setSearchBarValue] = React.useState("");
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
+  const handleLogin = () => {
+    // Navigate to the home page upon login
+    navigate("/ModifyUsers");
+  };
   return (
     <>
       <Helmet>
@@ -22,7 +28,7 @@ export default function UsersPage() {
         <header className="flex justify-center items-center p-2.5 bg-indigo-800">
           <div className="flex flex-col items-center justify-center w-[80%] mt-[5px] mr-[22px] gap-[7px]">
             <div className="flex md:flex-col self-stretch justify-between items-start gap-5">
-              <div className="flex w-[68%] md:w-full mb-1.5 pt-[3px]">
+              <div className="flex w-[78%] md:w-full mb-1.5 pt-[3px]">
                 <div className="flex flex-col w-full">
                   <div className="flex sm:flex-col justify-between items-center w-[96%] md:w-full gap-5">
                   <a href="../Home1" className="self-start">
@@ -35,17 +41,17 @@ export default function UsersPage() {
                           Monitoring AP
                         </Heading>
                     </a>
-                    <a href="../user1" className="self-start">
+                    <a href="../Page3monitroingtimestampforallusers" className="self-start">
                         <Heading size="md" as="h4" className="!text-blue_gray-100 !font-saira">
-                          Users
+                          Monitoring Users
                         </Heading>
                     </a>
-                    <a href="#" className="self-start">
+                    <a href="../ModifyUsers" className="self-start">
                         <Heading size="md" as="h4" className="!text-blue_gray-100 !font-saira">
-                        Modify Users
+                          Modify Users
                         </Heading>
                     </a>
-                    <a href="#" className="self-start">
+                    <a href="../NewReservation" className="self-start">
                       <Heading size="md" as="h4" className="!text-blue_gray-100 !font-saira">
                         New Reservation
                       </Heading>
@@ -55,7 +61,7 @@ export default function UsersPage() {
                 </div>
               </div>
               <Heading size="md" as="h4" className="mt-[13px] !text-white-A700_01 !font-saira">
-                Users
+                Users Managment
               </Heading>
             </div>
           </div>
@@ -64,11 +70,7 @@ export default function UsersPage() {
           <div>
             <div className="flex flex-col items-end gap-[51px]">
               <div className="flex md:flex-col justify-between items-start w-[86%] md:w-full mr-2 gap-5">
-                <Heading size="lg" as="h1" className="mt-[19px] tracking-[1.00px] !font-roboto text-center">
-                  User Management
-                </Heading>
-                <div className="flex sm:flex-col justify-between items-center w-[41%] md:w-full mb-2 gap-5">
-                  <Input
+              <Input
                     color="white_A700_01"
                     size="sm"
                     shape="square"
@@ -90,13 +92,13 @@ export default function UsersPage() {
                     className="w-[49%] gap-[35px] tracking-[2.00px] uppercase border-black-900 border-2 border-solid"
                   />
                   <Button
+                    onClick={handleLogin}
                     size="md"
                     leftIcon={<Img src="images/img_vector.svg" alt="Vector" />}
                     className="gap-[17px] sm:pr-5 tracking-[1.00px] font-roboto min-w-[169px] rounded-[24px]"
                   >
                     Add User
                   </Button>
-                </div>
               </div>
               <div className="self-stretch py-[51px] md:py-5 bg-gray-100_04">
                 <div className="flex md:flex-col justify-between items-start mt-[-549px] mb-[465px] gap-5 px-[52px] md:px-5">
