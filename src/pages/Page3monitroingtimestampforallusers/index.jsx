@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import { Img, SelectBox, Button, Text, Input, Heading } from "../../components";
-import { Link } from "react-router-dom";
+import { Img, Button, Input, Heading } from "../../components";
 import { useNavigate } from "react-router-dom";
 
 export default function Page3monitroingPage() {
@@ -58,17 +57,12 @@ export default function Page3monitroingPage() {
               </a>
               <a href="../Page3monitroing">
                 <Heading size="md" as="h4" className="self-start !text-gray-200_01 !font-saira">
-                  Monitoring AP
+                  Monitoring Rooms
                 </Heading>
               </a>
-              <a href="../user1">
-                <Heading size="md" as="h4" className="!text-gray-300 !font-saira">
-                  User Management
-                </Heading>
-              </a>
-              <a href="../ModifyUsers">
+              <a href="../Meetings">
                 <Heading size="md" as="h4" className="self-start !text-gray-200_01 !font-saira">
-                  Modify Users
+                  Meetings
                 </Heading>
               </a>
               <a href="../NewReservation">
@@ -89,15 +83,15 @@ export default function Page3monitroingPage() {
           <Input
             color="white_A700_01"
             size="sm"
+            type="search"
             shape="square"
-            name="search"
             placeholder="Search by Room ID or Name..."
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
             className="w-[18%] mr-[26px] gap-[35px] tracking-[2.00px] uppercase border-black-900 border-2 border-solid"
           />
         </div>
-        <div className="ml-[1250px] mt-[-60px] mb-[15px]">
+        <div className="ml-[1200px] mt-[-60px] mb-[15px]">
           <Button
             onClick={handleLogin}
             size="md"
@@ -133,9 +127,6 @@ export default function Page3monitroingPage() {
                   SSN
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Token
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Role
                 </th>
               </tr>
@@ -143,16 +134,13 @@ export default function Page3monitroingPage() {
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredData.map((row) => (
                 <tr key={row.id}>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <Link to={`../ModifyUsers`}>{row.id}</Link> {/* ${row.id}*/}
-                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.id}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{row.firstName}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{row.middleName}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{row.lastName}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{row.email}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{row.password}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{row.ssn}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{row.token}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{row.role}</td>
                 </tr>
               ))}

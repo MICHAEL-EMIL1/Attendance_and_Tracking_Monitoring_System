@@ -17,17 +17,17 @@ export default function LOGINPage() {
         <title>Attendance & tracking monitoring system</title>
         <meta name="description" content="Web site created using create-react-app" />
       </Helmet>
-      <div className="flex flex-col w-full pb-[97px] gap-[77px] md:pb-5 bg-gray-50">
-        <div className="flex flex-col items-start w-[43%] md:w-full gap-[25px] p-[25px] border-blue-800 border-[5px] border-solid bg-indigo-800_01">
-          <Heading size="xl" as="h1" className="mt-5 ml-1.5 !text-white-A700_01 !font-saira">
+      <div className="flex flex-col h-screen w-full pb-[97px] gap-[60px] md:pb-5 bg-gray-50">
+        <div className="flex flex-col items-start w-[50%] md:w-full p-[25px] border-blue-800 border-[5px] border-solid bg-indigo-800_01">
+          <Heading size="lg" className="mt-5 ml-1.5 !text-white-A700_01 !font-saira">
             Welcome to Attendance & Tracking Monitoring System!
           </Heading>
-          <Heading size="xl" as="h2" className="!text-white-A700_01 !font-saira pl-[78%]">
+          <Heading size="lg" className="!text-white-A700_01 !font-saira pl-[78%]">
             Login
           </Heading>
         </div>
         <div className="flex flex-col items-center w-full mx-auto md:p-5 max-w-[1016px]">
-          <div className="flex flex-col items-center justify-end mt-[27px] gap-[50px] p-[29px] bg-white-A700_01 shadow-lg rounded-lg">
+          <div className="flex flex-col items-center justify-end mt-[15px] gap-[50px] p-[20px] bg-white-A700_01 shadow-lg rounded-lg">
             <h1 className="mt-8 text-3xl">
               Login
             </h1>
@@ -35,9 +35,9 @@ export default function LOGINPage() {
               <div className="self-stretch pb-4">
                 <Input
                   shape="round"
-                  type="text"
-                  name="userName"
-                  placeholder="Username"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
                   className="sm:pr-5 p-5"
                 />
                 <Input

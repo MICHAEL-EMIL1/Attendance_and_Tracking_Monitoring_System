@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Text, Img, Button, Heading } from "../../components";
+import { Text, Img, Heading } from "../../components";
 import { MenuItem, Menu, Sidebar } from "react-pro-sidebar";
 
 export default function Home1Page() {
@@ -20,7 +20,7 @@ export default function Home1Page() {
           onClick={() => {
             setCollapsed(!collapsed);
           }}
-          className="flex flex-col h-screen pb-[45px] top-0 md:pb-5 border-black-900 border border-solid bg-indigo-800_01 shadow-xl !sticky overflow-auto"
+          className="flex flex-col h-screen top-0 md:pb-5  border-black-900 border border-solid bg-indigo-800_01 shadow-xl !sticky overflow-auto"
         >
           <div className="flex flex-col self-stretch items-start">
             <Heading size="lg" as="h2" className="ml-[15px] mt-[5px] !text-white-A700_01 !font-segoeui">
@@ -38,19 +38,16 @@ export default function Home1Page() {
                 },
               }}
               rootStyles={{ ["&>ul"]: { gap: "60.50px" } }}
-              className="flex flex-col self-center items-center w-full mt-[60px]"
+              className="flex flex-col self-center items-center w-full mt-[70px]"
             >
               <MenuItem icon={<Img src="images/img_darhboard.svg" alt="dashboard_one" className="h-[24px] w-[24px]" />}>
-                <a href="../Page3monitroing">Monitoring AP</a>
+                <a href="../Page3monitroing">Monitoring Rooms</a>
               </MenuItem>
               <MenuItem icon={<Img src="images/img_darhboard.svg" alt="dashboard_one" className="h-[24px] w-[24px]" />}>
                 <a href="../page3monitroingtimestampforallusers">Monitoring Users</a>
               </MenuItem>
-              <MenuItem icon={<Img src="images/img_group_light.svg" alt="image" className="h-[33px]" />}>
-                <a href="../user1">User Management</a>
-              </MenuItem>
-              <MenuItem icon={<Img src="images/img_group_fill.svg" alt="image" className="h-[33px]" />}>
-                <a href="../ModifyUsers">Modify Users</a>
+              <MenuItem icon={<Img src="images/img_darhboard.svg" alt="image" className="h-[24px] w-[24px]" />}>
+                <a href="../Meetings">Meetings</a>
               </MenuItem>
               <MenuItem icon={<Img src="images/img_desk_alt.svg" alt="deskalt_one" className="h-[24px] w-[24px]" />}>
                 <a href="../NewReservation">New Reservation</a>
@@ -61,12 +58,12 @@ export default function Home1Page() {
             </Menu>
           </div>
         </Sidebar>
-        <div className="grid grid-cols-1 md:ml-[170px] md:mt-[-720px] md:grid-cols-2 md:w-[calc(100% - 288px)]">
+        <div className="grid grid-cols-1 md:ml-[170px] md:mt-[-740px] md:grid-cols-2 md:w-[calc(100% - 288px)] gap-4">
           <div className="">
             <Heading size="md" as="h1" className="ml-5 mt-5 mb-1 !font-black">
               New Reservations
             </Heading>
-            <div className="flex flex-wrap gap-[45px] bg-gray-100_04 pl-[25px] pb-[30px] h-[350px] w-[99%] overflow-y-auto ">
+            <div className="flex flex-wrap gap-[30px] bg-gray-100_04 pl-[25px] pb-[30px] h-[350px] w-[99%] overflow-y-auto ">
                 {[1, 2, 3, 4, 5, 6].map((index) => (
                   <div key={index} className="mt-[20px] bg-white-A700_01">
                     <Text className="p-[20px]">
@@ -94,7 +91,7 @@ export default function Home1Page() {
             <Heading size="md" as="h1" className="ml-5 mt-5 mb-1 !font-black">
               Idle Rooms
             </Heading>
-            <div className="flex flex-wrap gap-[45px] bg-gray-100_04 pl-[25px] pb-[30px] h-[350px] w-[99%] overflow-y-auto ">
+            <div className="flex flex-wrap gap-[30px] bg-gray-100_04 pl-[25px] pb-[30px] h-[350px] w-[99%] overflow-y-auto ">
                 {[1, 2, 3, 4, 5, 6].map((index) => (
                   <div key={index} className="mt-[20px] bg-white-A700_01">
                     <Text className="p-[20px]">
@@ -122,7 +119,7 @@ export default function Home1Page() {
             <Heading size="md" as="h1" className="ml-5 mt-5 mb-1 !font-black">
               Current Meetings
             </Heading>
-            <div className="flex flex-wrap gap-[45px] bg-gray-100_04 pl-[25px] pb-[30px] h-[350px] w-[99%] overflow-y-auto ">
+            <div className="flex flex-wrap gap-[30px] bg-gray-100_04 pl-[25px] pb-[30px] h-[350px] w-[99%] overflow-y-auto ">
                 {[1, 2, 3, 4, 5, 6].map((index) => (
                   <div key={index} className="mt-[20px] bg-white-A700_01">
                     <Text className="p-[20px]">
@@ -150,7 +147,7 @@ export default function Home1Page() {
             <Heading size="md" as="h1" className="ml-5 mt-5 mb-1 !font-black">
               Upcoming Meetings
             </Heading>
-            <div className="flex flex-wrap gap-[45px] bg-gray-100_04 pl-[25px] pb-[30px] h-[350px] w-[99%] overflow-y-auto ">
+            <div className="flex flex-wrap gap-[30px] bg-gray-100_04 pl-[25px] pb-[30px] h-[350px] w-[99%] overflow-y-auto ">
                 {[1, 2, 3, 4, 5, 6].map((index) => (
                   <div key={index} className="mt-[20px] bg-white-A700_01">
                     <Text className="p-[20px]">

@@ -8,7 +8,9 @@ import Page3monitroing from "pages/Page3monitroing";
 import Page3monitroingtimestampforallusers from "pages/Page3monitroingtimestampforallusers";
 import ModifyRooms from "pages/ModifyRooms";
 import AddRooms from "pages/AddRooms";
-import ModifyUsers from "pages/ModifyUsers";
+import Meetings from "pages/Meetings";
+import AddMeeting from "pages/AddMeeting";
+import MeetingDetails from "pages/MeetingDetails";
 import AddUsers from "pages/AddUsers";
 import NewReservation from "pages/NewReservation";
 
@@ -22,8 +24,11 @@ const ProjectRoutes = () => {
       <Route path="user1" element={<Users />} />
       <Route path="ModifyRooms" element={<ModifyRooms />} />
       <Route path="AddRooms" element={<AddRooms />} />
-      <Route path="ModifyUsers" element={<ModifyUsers />} />
       <Route path="AddUsers" element={<AddUsers />} />
+      <Route path="AddUsers" element={<AddUsers />} />
+      <Route path="Meetings" element={<Meetings />} />
+      <Route path="AddMeeting" element={<AddMeeting />} />
+      <Route path="MeetingDetails" element={<MeetingDetails />} />
       <Route path="NewReservation" element={<NewReservation />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

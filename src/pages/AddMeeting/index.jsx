@@ -70,7 +70,7 @@ export default function ModifyUsers() {
               as="h4"
               className="mt-3.5 mb-3.5 !text-white-A700_01 !font-saira"
             >
-              Modify Rooms
+              Add Meeting
             </Heading>
           </div>
         </header>
@@ -80,41 +80,74 @@ export default function ModifyUsers() {
               <div className="flex flex-col items-start w-full gap-10">
                 <div className="p-[45px] ml-[950px] bg-white-A700_01 rounded-[33px]">
                   <img
-                    src="images/door.png"
+                    src="images/img_user_fill.svg"
                     alt="userfill_one"
                     className="self-stretch h-[126px] md:h-auto my-2"
                   />
                 </div>
-                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[22px] mt-[-260px]">
-                  <Text as="p">Building</Text>
+                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[60px] mt-[-260px]">
+                  <Text as="p">Name</Text>
                   <Input
                     shape="round"
                     type="text"
-                    name="Building"
+                    name="firstname"
                     className="flex-1 bg-white-A700_01"
                   />
                 </div>
-                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[53px]">
-                  <Text as="p">Floor</Text>
+                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[68px]">
+                  <Text as="p">Type</Text>
                   <Input
                     shape="round"
-                    name="Floor"
+                    name="middlename"
                     className="flex-1 bg-white-A700_01"
                   />
                 </div>
-                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[90px]">
-                  <Text as="p" className="w-[20px]">Room Name</Text>
+                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[69px]">
+                  <Text as="p">Date</Text>
                   <Input
                     shape="round"
-                    name="Name"
+                    name="lastname"
                     className="flex-1 bg-white-A700_01"
                   />
                 </div>
-                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[88px]">
-                  <Text as="p">IP</Text>
+                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[83px]">
+                  <Text as="p" className="w-[40px]" >Start Time</Text>
                   <Input
                     shape="round"
-                    name="IP"
+                    name="email"
+                    className="flex-1 bg-white-A700_01"
+                  />
+                </div>
+                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[83px]">
+                  <Text as="p" className="w-[40px]">Last Time</Text>
+                  <Input
+                    shape="round"
+                    name="password"
+                    type="password"
+                    className="flex-1 bg-white-A700_01"
+                  />
+                </div>
+                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[86px]">
+                  <Text as="p"className="w-[40px]">Course ID</Text>
+                  <Input
+                    shape="round"
+                    name="SSN"
+                    className="flex-1 bg-white-A700_01"
+                  />
+                </div>
+                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[87px]">
+                  <Text as="p"className="w-[40px]">Organizer ID</Text>
+                  <Input
+                    shape="round"
+                    name="role"
+                    className="flex-1 bg-white-A700_01"
+                  />
+                </div>
+                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[87px]">
+                  <Text as="p"className="w-[40px]">Room ID</Text>
+                  <Input
+                    shape="round"
+                    name="role"
                     className="flex-1 bg-white-A700_01"
                   />
                 </div>

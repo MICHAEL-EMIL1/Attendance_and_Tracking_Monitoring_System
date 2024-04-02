@@ -32,7 +32,7 @@ export default function ModifyUsers() {
                     as="h4"
                     className="self-start !text-gray-200_01 !font-saira"
                   >
-                    Monitoring AP
+                    Monitoring Rooms
                   </Heading>
                 </a>
                 <a href="../Page3monitroingtimestampforallusers">
@@ -44,13 +44,13 @@ export default function ModifyUsers() {
                     Monitoring Users
                   </Heading>
                 </a>
-                <a href="../user1">
+                <a href="../Meetings">
                   <Heading
                     size="md"
                     as="h4"
                     className="self-start !text-gray-200_01 !font-saira"
                   >
-                    User Managment
+                    Meetings
                   </Heading>
                 </a>
                 <a href="../NewReservation">
@@ -128,12 +128,20 @@ export default function ModifyUsers() {
                   />
                 </div>
                 <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[117px]">
-                  <Text as="p">Role</Text>
+                  <Text as="p">SSN</Text>
                   <Input
                     shape="round"
-                    name="role"
+                    name="SSN"
                     className="flex-1 bg-white-A700_01"
                   />
+                </div>
+                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[117px]">
+                  <Text as="p">Role</Text>
+                  <select name="role" className=" p-[10px] flex-1 bg-white-A700_01">
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                    <option value="guest">Guest</option>
+                  </select>
                 </div>
                 <Button
                   shape="round"

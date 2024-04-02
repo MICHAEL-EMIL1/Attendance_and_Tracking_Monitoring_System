@@ -11,6 +11,7 @@ export default function Page3monitroingPage() {
     building: `Building ${Math.floor(Math.random() * 10) + 1}`,
     floor: `Floor ${Math.floor(Math.random() * 5) + 1}`,
     name: `Room ${i + 1}`,
+    IP:`${Math.floor(Math.random() * 255) + 1}.${Math.floor(Math.random() * 255) + 1}.${Math.floor(Math.random() * 255) + 1}.${Math.floor(Math.random() * 255) + 1}`,
     status: Math.random() > 0.5 ? "Idle" : "Active",
   }));
 
@@ -47,14 +48,9 @@ export default function Page3monitroingPage() {
                   Monitoring Users
                 </Heading>
               </a>
-              <a href="../user1">
-                <Heading size="md" as="h4" className="!text-gray-300 !font-saira">
-                  User Management
-                </Heading>
-              </a>
-              <a href="../ModifyUsers">
+              <a href="../Meetings">
                 <Heading size="md" as="h4" className="self-start !text-gray-200_01 !font-saira">
-                  Modify Users
+                  Meetings
                 </Heading>
               </a>
               <a href="../NewReservation">
@@ -66,7 +62,7 @@ export default function Page3monitroingPage() {
             <div className="self-stretch h-px mt-[3px] bg-white-A700_01" />
           </div>
           <Heading size="md" as="h4" className="mt-3.5 mb-3.5 !text-white-A700_01 !font-saira">
-            Monitoring AP
+            Monitoring Rooms
           </Heading>
         </div>
       </header>
@@ -83,7 +79,7 @@ export default function Page3monitroingPage() {
             className="w-[18%] mr-[26px] gap-[35px] tracking-[2.00px] uppercase border-black-900 border-2 border-solid"
           />
         </div>
-        <div className="ml-[1250px] mt-[-60px] mb-[15px]">
+        <div className="ml-[1200px] mt-[-60px] mb-[15px]">
           <Button
             onClick={handleLogin}
             size="md"
@@ -110,6 +106,9 @@ export default function Page3monitroingPage() {
                   Name
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  IP
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
               </tr>
@@ -118,11 +117,12 @@ export default function Page3monitroingPage() {
               {filteredData.map((row) => (
                 <tr key={row.id}>
                   <td className="px-6 py-4 whitespace-nowrap">
-                   <Link to={`../ModifyRooms`}>{row.id}</Link> {/* ${row.id}*/}
+                    <Link to={`../ModifyRooms`}>{row.id}</Link> {/* ${row.id}*/}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">{row.building}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{row.floor}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{row.name}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.IP}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{row.status}</td>
                 </tr>
               ))}

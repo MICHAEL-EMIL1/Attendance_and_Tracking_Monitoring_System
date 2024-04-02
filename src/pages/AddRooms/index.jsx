@@ -32,7 +32,7 @@ export default function ModifyUsers() {
                     as="h4"
                     className="self-start !text-gray-200_01 !font-saira"
                   >
-                    Monitoring AP
+                    Monitoring Rooms
                   </Heading>
                 </a>
                 <a href="../Page3monitroingtimestampforallusers">
@@ -44,13 +44,13 @@ export default function ModifyUsers() {
                     Monitoring Users
                   </Heading>
                 </a>
-                <a href="../user1">
+                <a href="../Meetings">
                   <Heading
                     size="md"
                     as="h4"
                     className="self-start !text-gray-200_01 !font-saira"
                   >
-                    User Managment
+                    Meetings
                   </Heading>
                 </a>
                 <a href="../NewReservation">
@@ -80,7 +80,7 @@ export default function ModifyUsers() {
               <div className="flex flex-col items-start w-full gap-10">
                 <div className="p-[45px] ml-[950px] bg-white-A700_01 rounded-[33px]">
                   <img
-                    src="images/img_user_fill.svg"
+                    src="images/door.png"
                     alt="userfill_one"
                     className="self-stretch h-[126px] md:h-auto my-2"
                   />
@@ -102,11 +102,19 @@ export default function ModifyUsers() {
                     className="flex-1 bg-white-A700_01"
                   />
                 </div>
-                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[50px]">
-                  <Text as="p">Name</Text>
+                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[90px]">
+                  <Text as="p" className="w-[20px]">Room Name</Text>
                   <Input
                     shape="round"
                     name="Name"
+                    className="flex-1 bg-white-A700_01"
+                  />
+                </div>
+                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[95px]">
+                  <Text as="p">IP</Text>
+                  <Input
+                    shape="round"
+                    name="IP"
                     className="flex-1 bg-white-A700_01"
                   />
                 </div>
