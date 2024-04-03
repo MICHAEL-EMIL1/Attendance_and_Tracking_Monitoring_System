@@ -76,56 +76,61 @@ export default function ModifyUsers() {
         </header>
         <div className="w-full mx-auto md:p-5 max-w-[1375px]">
           <div className="flex flex-col gap-[13px]">
-            <div className="flex p-[20px] sm:p-5 bg-gray-100_01">
-              <div className="flex flex-col items-start w-full gap-10">
-                <div className="p-[45px] ml-[950px] bg-white-A700_01 rounded-[33px]">
-                  <img
+            <div className="flex p-[20px] sm:p-5 bg-gray-100_01 rounded-[20px] mt-[10px]">
+              <div className="flex justify-between w-full gap-10">
+                {/* Inputs Column */}
+                <div className="flex flex-col w-[70%] gap-[22px] p-[5px]">
+                  <div className="flex justify-center items-center gap-[97px]">
+                    <Text as="p"className="w-[20px]">IP</Text>
+                    <Input
+                      shape="round"
+                      type="text"
+                      name="firstname"
+                      className="flex-1 bg-white-A700_01"
+                    />
+                  </div>
+                  <div className="flex justify-center items-center gap-[97px]">
+                    <Text as="p"className="w-[20px]">Building</Text>
+                    <Input
+                      shape="round"
+                      name="middlename"
+                      className="flex-1 bg-white-A700_01"
+                    />
+                  </div>
+                  <div className="flex justify-center items-center gap-[97px]">
+                    <Text as="p" className="w-[20px]">Floor</Text>
+                    <Input
+                      shape="round"
+                      name="lastname"
+                      className="flex-1 bg-white-A700_01"
+                    />
+                  </div>
+                  <div className="flex justify-center items-center gap-[97px]">
+                    <Text as="p" className="w-[20px]">Room Name</Text>
+                    <Input
+                      shape="round"
+                      name="email"
+                      className="flex-1 bg-white-A700_01"
+                    />
+                  </div>
+                </div>
+                {/* Image Column */}
+                <div className="p-[20px] max-h-40 bg-white-A700_01 rounded-[33px] mr-[20px]">
+                <img
                     src="images/door.png"
                     alt="userfill_one"
-                    className="self-stretch h-[126px] md:h-auto my-2"
+                    className="self-stretch h-[110px] md:max-h-24 my-2"
                   />
                 </div>
-                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[35px] mt-[-260px]">
-                  <Text as="p">Bulding</Text>
-                  <Input
-                    shape="round"
-                    type="text"
-                    name="Building"
-                    className="flex-1 bg-white-A700_01"
-                  />
-                </div>
-                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[60px]">
-                  <Text as="p">Floor</Text>
-                  <Input
-                    shape="round"
-                    name="Floor"
-                    className="flex-1 bg-white-A700_01"
-                  />
-                </div>
-                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[90px]">
-                  <Text as="p" className="w-[20px]">Room Name</Text>
-                  <Input
-                    shape="round"
-                    name="Name"
-                    className="flex-1 bg-white-A700_01"
-                  />
-                </div>
-                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[95px]">
-                  <Text as="p">IP</Text>
-                  <Input
-                    shape="round"
-                    name="IP"
-                    className="flex-1 bg-white-A700_01"
-                  />
-                </div>
-                <Button
-                  shape="round"
-                  className="mt-5 sm:px-5 tracking-[1.00px] font-extrabold min-w-[169px]"
-                >
-                  Submit
-                </Button>
               </div>
             </div>
+            {/* Submit Button */}
+            <Button
+              shape="round"
+              className="mt-5 sm:px-5 tracking-[1.00px] font-extrabold w-[25%] min-width-[20%"
+            >
+              Submit
+            </Button>
           </div>
         </div>
       </div>

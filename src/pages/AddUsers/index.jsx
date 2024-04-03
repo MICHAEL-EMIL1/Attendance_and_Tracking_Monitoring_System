@@ -76,81 +76,85 @@ export default function ModifyUsers() {
         </header>
         <div className="w-full mx-auto md:p-5 max-w-[1375px]">
           <div className="flex flex-col gap-[13px]">
-            <div className="flex p-[20px] sm:p-5 bg-gray-100_01">
-              <div className="flex flex-col items-start w-full gap-10">
-                <div className="p-[45px] ml-[950px] bg-white-A700_01 rounded-[33px]">
+            <div className="flex p-[20px] sm:p-5 bg-gray-100_01 rounded-[20px] mt-[10px]">
+              <div className="flex justify-between w-full gap-10">
+                {/* Inputs Column */}
+                <div className="flex flex-col w-[70%] gap-[20px]">
+                  <div className="flex justify-center items-center gap-[40px]">
+                    <Text as="p">First Name</Text>
+                    <Input
+                      shape="round"
+                      type="text"
+                      name="firstname"
+                      className="flex-1 bg-white-A700_01"
+                    />
+                  </div>
+                  <div className="flex justify-center items-center gap-[13px]">
+                    <Text as="p">Middle Name</Text>
+                    <Input
+                      shape="round"
+                      name="middlename"
+                      className="flex-1 bg-white-A700_01"
+                    />
+                  </div>
+                  <div className="flex justify-center items-center gap-[42px]">
+                    <Text as="p">Last Name</Text>
+                    <Input
+                      shape="round"
+                      name="lastname"
+                      className="flex-1 bg-white-A700_01"
+                    />
+                  </div>
+                  <div className="flex justify-center items-center gap-[103px]">
+                    <Text as="p">Email</Text>
+                    <Input
+                      shape="round"
+                      name="email"
+                      className="flex-1 bg-white-A700_01"
+                    />
+                  </div>
+                  <div className="flex justify-center items-center gap-[53px]">
+                    <Text as="p">Password</Text>
+                    <Input
+                      shape="round"
+                      name="password"
+                      type="password"
+                      className="flex-1 bg-white-A700_01"
+                    />
+                  </div>
+                  <div className="flex justify-center items-center gap-[117px]">
+                    <Text as="p">SSN</Text>
+                    <Input
+                      shape="round"
+                      name="SSN"
+                      className="flex-1 bg-white-A700_01"
+                    />
+                  </div>
+                  <div className="flex justify-center items-center gap-[117px]">
+                    <Text as="p">Role</Text>
+                    <select name="role" className=" p-[10px] flex-1 bg-white-A700_01">
+                      <option value="admin">Admin</option>
+                      <option value="user">User</option>
+                      <option value="guest">Guest</option>
+                    </select>
+                  </div>
+                </div>
+                {/* Image Column */}
+                <div className="p-[20px] max-h-40 bg-white-A700_01 rounded-[33px] mr-[20px]">
                   <img
                     src="images/img_user_fill.svg"
                     alt="userfill_one"
-                    className="self-stretch h-[126px] md:h-auto my-2"
+                    className="self-stretch h-[110px] md:max-h-24 my-2"
                   />
                 </div>
-                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[40px] mt-[-260px]">
-                  <Text as="p">First Name</Text>
-                  <Input
-                    shape="round"
-                    type="text"
-                    name="firstname"
-                    className="flex-1 bg-white-A700_01"
-                  />
-                </div>
-                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[13px]">
-                  <Text as="p">Middle Name</Text>
-                  <Input
-                    shape="round"
-                    name="middlename"
-                    className="flex-1 bg-white-A700_01"
-                  />
-                </div>
-                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[42px]">
-                  <Text as="p">Last Name</Text>
-                  <Input
-                    shape="round"
-                    name="lastname"
-                    className="flex-1 bg-white-A700_01"
-                  />
-                </div>
-                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[103px]">
-                  <Text as="p">Email</Text>
-                  <Input
-                    shape="round"
-                    name="email"
-                    className="flex-1 bg-white-A700_01"
-                  />
-                </div>
-                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[53px]">
-                  <Text as="p">Password</Text>
-                  <Input
-                    shape="round"
-                    name="password"
-                    type="password"
-                    className="flex-1 bg-white-A700_01"
-                  />
-                </div>
-                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[117px]">
-                  <Text as="p">SSN</Text>
-                  <Input
-                    shape="round"
-                    name="SSN"
-                    className="flex-1 bg-white-A700_01"
-                  />
-                </div>
-                <div className="flex sm:flex-col justify-center items-center w-[50%] gap-[117px]">
-                  <Text as="p">Role</Text>
-                  <select name="role" className=" p-[10px] flex-1 bg-white-A700_01">
-                    <option value="admin">Admin</option>
-                    <option value="user">User</option>
-                    <option value="guest">Guest</option>
-                  </select>
-                </div>
-                <Button
-                  shape="round"
-                  className="mt-5 sm:px-5 tracking-[1.00px] font-extrabold min-w-[169px]"
-                >
-                  Submit
-                </Button>
               </div>
             </div>
+            <Button
+              shape="round"
+              className="mt-5 sm:px-5 tracking-[1.00px] font-extrabold w-[25%] min-width-[20%"
+            >
+              Submit
+            </Button>
           </div>
         </div>
       </div>

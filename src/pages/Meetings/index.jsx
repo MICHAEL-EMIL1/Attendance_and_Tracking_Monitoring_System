@@ -86,7 +86,11 @@ export default function ModifyUsers() {
             <Button
               onClick={handleLogin}
               size="md"
-              leftIcon={<Img src="images/img_vector.svg" alt="Vector" />}
+              leftIcon={<img
+                src="images/door.png"
+                alt="userfill_one"
+                className="self-stretch h-[30px] md:h-auto my-2"
+              />}
               className="gap-[17px] sm:pr-5 tracking-[1.00px] font-roboto min-w-[179px] rounded-[24px]"
               >
               Add Meeting

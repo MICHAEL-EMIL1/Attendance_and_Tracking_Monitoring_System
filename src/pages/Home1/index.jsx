@@ -41,32 +41,32 @@ export default function Home1Page() {
               className="flex flex-col self-center items-center w-full mt-[70px]"
             >
               <MenuItem icon={<Img src="images/img_darhboard.svg" alt="dashboard_one" className="h-[24px] w-[24px]" />}>
-                <a href="../Page3monitroing">Monitoring Rooms</a>
+                <a href="../Page3monitroing" className="w-[200px]">Monitoring Rooms</a>
               </MenuItem>
               <MenuItem icon={<Img src="images/img_darhboard.svg" alt="dashboard_one" className="h-[24px] w-[24px]" />}>
-                <a href="../page3monitroingtimestampforallusers">Monitoring Users</a>
+                <a href="../page3monitroingtimestampforallusers" className="w-[200px]">Monitoring Users</a>
               </MenuItem>
               <MenuItem icon={<Img src="images/img_darhboard.svg" alt="image" className="h-[24px] w-[24px]" />}>
-                <a href="../Meetings">Meetings</a>
+                <a href="../Meetings" className="w-[200px]">Meetings</a>
               </MenuItem>
               <MenuItem icon={<Img src="images/img_desk_alt.svg" alt="deskalt_one" className="h-[24px] w-[24px]" />}>
-                <a href="../NewReservation">New Reservation</a>
+                <a href="../NewReservation" className="w-[200px]">New Reservation</a>
               </MenuItem>
               <MenuItem icon={<Img src="images/img_signoutsqure.svg" alt="deskalt_one" className="h-[24px] w-[24px]" />}>
-                <a href="/">logout</a>
+                <a href="/" className="w-[200px]">logout</a>
               </MenuItem>
             </Menu>
           </div>
         </Sidebar>
         <div className="grid grid-cols-1 md:ml-[170px] md:mt-[-740px] md:grid-cols-2 md:w-[calc(100% - 288px)] gap-4">
           <div className="">
-            <Heading size="md" as="h1" className="ml-5 mt-5 mb-1 !font-black">
+            <Heading size="md" as="h1" className="ml-3 mt-5 mb-1 text-blue-900">
               New Reservations
             </Heading>
-            <div className="flex flex-wrap gap-[30px] bg-gray-100_04 pl-[25px] pb-[30px] h-[350px] w-[99%] overflow-y-auto ">
-                {[1, 2, 3, 4, 5, 6].map((index) => (
-                  <div key={index} className="mt-[20px] bg-white-A700_01">
-                    <Text className="p-[20px]">
+            <div className="flex flex-wrap justify-center gap-[25px] bg-slate-200 pb-[10px] h-[350px] w-[99%] overflow-y-auto rounded-[24px]">
+                {[1, 2, 3, 4, 5, 6,7,8,9,10].map((index) => (
+                  <div key={index} className="rounded-[24px] mt-[27px] bg-white-A700_01">
+                    <Text className="text-lg p-[20px] text-blue-900">
                       <>
                         Room ID : 22
                         <br />
@@ -88,13 +88,13 @@ export default function Home1Page() {
             </div>
           </div>
           <div className="">
-            <Heading size="md" as="h1" className="ml-5 mt-5 mb-1 !font-black">
+            <Heading size="md" as="h1" className="ml-3 mt-5 mb-1 text-blue-900">
               Idle Rooms
             </Heading>
-            <div className="flex flex-wrap gap-[30px] bg-gray-100_04 pl-[25px] pb-[30px] h-[350px] w-[99%] overflow-y-auto ">
-                {[1, 2, 3, 4, 5, 6].map((index) => (
-                  <div key={index} className="mt-[20px] bg-white-A700_01">
-                    <Text className="p-[20px]">
+            <div className="flex flex-wrap justify-center gap-[25px] bg-slate-200 pb-[10px] h-[350px] w-[99%] overflow-y-auto rounded-[24px]">
+                {[1, 2, 3, 4, 5, 6,7,8,9,10].map((index) => (
+                  <div key={index} className="rounded-[24px] mt-[27px] bg-white-A700_01">
+                    <Text className="text-lg p-[20px] text-blue-900">
                       <>
                         Room ID : 22
                         <br />
@@ -116,13 +116,13 @@ export default function Home1Page() {
             </div>
           </div>
           <div className="">
-            <Heading size="md" as="h1" className="ml-5 mt-5 mb-1 !font-black">
+            <Heading size="md" as="h1" className="ml-3 mt-5 mb-1 text-blue-900">
               Current Meetings
             </Heading>
-            <div className="flex flex-wrap gap-[30px] bg-gray-100_04 pl-[25px] pb-[30px] h-[350px] w-[99%] overflow-y-auto ">
-                {[1, 2, 3, 4, 5, 6].map((index) => (
-                  <div key={index} className="mt-[20px] bg-white-A700_01">
-                    <Text className="p-[20px]">
+            <div className="flex flex-wrap justify-center gap-[25px] bg-slate-200  pb-[30px] h-[350px] w-[99%] overflow-y-auto rounded-[24px]">
+                {[1, 2, 3, 4, 5,6,7,8,9,10].map((index) => (
+                  <div key={index} className="rounded-[24px] mt-[27px] bg-white-A700_01">
+                    <Text className="text-lg p-[20px] text-blue-900">
                       <>
                         Room ID : 22
                         <br />
@@ -144,13 +144,13 @@ export default function Home1Page() {
             </div>
           </div>
           <div className="">
-            <Heading size="md" as="h1" className="ml-5 mt-5 mb-1 !font-black">
+            <Heading size="md" as="h1" className="ml-3 mt-5 mb-1 text-blue-900">
               Upcoming Meetings
             </Heading>
-            <div className="flex flex-wrap gap-[30px] bg-gray-100_04 pl-[25px] pb-[30px] h-[350px] w-[99%] overflow-y-auto ">
-                {[1, 2, 3, 4, 5, 6].map((index) => (
-                  <div key={index} className="mt-[20px] bg-white-A700_01">
-                    <Text className="p-[20px]">
+            <div className="flex flex-wrap justify-center gap-[25px] bg-slate-200 pb-[30px] h-[350px] w-[99%] overflow-y-auto rounded-[24px]">
+                {[1, 2, 3, 4, 5, 6,7,8,9,10].map((index) => (
+                  <div key={index} className="rounded-[24px] mt-[27px] bg-white-A700_01">
+                    <Text className="text-lg p-[20px] text-blue-900">
                       <>
                         Room ID : 22
                         <br />

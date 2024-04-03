@@ -79,27 +79,33 @@ export default function Page3monitroingPage() {
         </div>
       </header>
       <div className="p-5 ">
-        <div className="mb-4">
-          <Input
-            color="white_A700_01"
-            size="sm"
-            type="search"
-            shape="square"
-            placeholder="Search by Room ID or Name..."
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            className="w-[18%] mr-[26px] gap-[35px] tracking-[2.00px] uppercase border-black-900 border-2 border-solid"
-          />
-        </div>
-        <div className="ml-[1200px] mt-[-60px] mb-[15px]">
-          <Button
-            onClick={handleLogin}
-            size="md"
-            leftIcon={<Img src="images/img_vector.svg" alt="Vector" />}
-            className="gap-[17px] sm:pr-5 tracking-[1.00px] font-roboto min-w-[169px] rounded-[24px]"
-            >
-            Add User
-          </Button>
+      <div className="flex justify-between mb-4 ">
+          <div className="">
+            <Input
+              color="white_A700_01"
+              size="sm"
+              shape="square"
+              name="search"
+              placeholder="Search by User ID..."
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              className="mr-[26px] gap-[35px] tracking-[2.00px] uppercase border-black-900 border-2 border-solid"
+            />
+          </div>
+          <div className="">
+            <Button
+              onClick={handleLogin}
+              size="md"
+              leftIcon={<img
+                src="images/img_user_fill.svg"
+                alt="userfill_one"
+                className="self-stretch h-[30px] md:h-auto my-2"
+              />}
+              className="gap-[17px] sm:pr-5 tracking-[1.00px] font-roboto w-full rounded-[24px]"
+              >
+              Add Users
+            </Button>
+          </div>
         </div>
         <div className="h-[650px] overflow-y-auto border border-gray-300 rounded">
           <table className="min-w-full divide-y divide-gray-200">
