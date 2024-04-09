@@ -27,8 +27,8 @@ export default function ModifyUsers() {
         </Helmet>
         <div className="flex flex-col w-full md:pb-5 bg-white-A700">
         <header className="p-1 bg-indigo-800">
-            <div className="flex md:flex-col justify-between items-center w-full mt-3.5 gap-5 mx-auto md:p-5 max-w-[1223px]">
-                <div className="flex flex-col items-center w-[80%] md:w-full">
+            <div className="flex md:flex-col justify-between items-center w-full mt-3.5 gap-5 mx-auto md:p-5 max-w-[1300px]">
+                <div className="flex flex-col items-center w-[70%] md:w-full">
                 <div className="flex sm:flex-col justify-between w-[98%] md:w-full gap-5">
                     <a href="../Home1" className="self-start">
                     <Heading
@@ -66,7 +66,7 @@ export default function ModifyUsers() {
                         Meetings
                     </Heading>
                     </a>
-                    <a href="../NewReservation">
+                    {/*<a href="../NewReservation">
                     <Heading
                         size="md"
                         as="h4"
@@ -74,23 +74,23 @@ export default function ModifyUsers() {
                     >
                         New Reservation
                     </Heading>
-                    </a>
+                    </a>*/}
                 </div>
                 <div className="self-stretch h-px mt-[3px] bg-white-A700_01" />
                 </div>
                 <Heading
-                size="md"
-                as="h4"
-                className="mt-3.5 mb-3.5 w-[50px] !text-white-A700_01 !font-saira"
+                size="lg"
+                className="mt-3.5 mb-3.5 !text-white-A700_01 !font-saira"
                 >
                 Meetings Details
                 </Heading>
             </div>
         </header>
-        <div className="p-5">
-            <Text>Meeting ID : </Text>
+        <div className="flex space-x-2 p-5">
+            <Text>Meeting ID: </Text>
+            <Text>1</Text>
         </div>
-        <div className="h-[530px] overflow-y-auto border m-[10px] mt-[2px] border-gray-300 rounded">
+        <div className="h-[615px] overflow-y-auto border m-[10px] mt-[2px] border-gray-300 rounded">
             <table className="min-w-full divide-y divide-gray-200">
                 <thead className="sticky top-0 bg-gray-50">
                     <tr>

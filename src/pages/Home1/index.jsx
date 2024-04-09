@@ -37,8 +37,8 @@ export default function Home1Page() {
                   fontSize: "24px",
                 },
               }}
-              rootStyles={{ ["&>ul"]: { gap: "60.50px" } }}
-              className="flex flex-col self-center items-center w-full mt-[70px]"
+              rootStyles={{ ["&>ul"]: { gap: "80.50px" } }}
+              className="flex flex-col self-center items-center w-full mt-[80px]"
             >
               <MenuItem icon={<Img src="images/img_darhboard.svg" alt="dashboard_one" className="h-[24px] w-[24px]" />}>
                 <a href="../Page3monitroing" className="w-[200px]">Monitoring Rooms</a>
@@ -49,9 +49,9 @@ export default function Home1Page() {
               <MenuItem icon={<Img src="images/img_darhboard.svg" alt="image" className="h-[24px] w-[24px]" />}>
                 <a href="../Meetings" className="w-[200px]">Meetings</a>
               </MenuItem>
-              <MenuItem icon={<Img src="images/img_desk_alt.svg" alt="deskalt_one" className="h-[24px] w-[24px]" />}>
+              {/*<MenuItem icon={<Img src="images/img_desk_alt.svg" alt="deskalt_one" className="h-[24px] w-[24px]" />}>
                 <a href="../NewReservation" className="w-[200px]">New Reservation</a>
-              </MenuItem>
+                </MenuItem>*/}
               <MenuItem icon={<Img src="images/img_signoutsqure.svg" alt="deskalt_one" className="h-[24px] w-[24px]" />}>
                 <a href="/" className="w-[200px]">logout</a>
               </MenuItem>
