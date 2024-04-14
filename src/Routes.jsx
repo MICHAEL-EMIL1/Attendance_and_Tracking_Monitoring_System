@@ -12,7 +12,6 @@ import Meetings from "pages/Meetings";
 import AddMeeting from "pages/AddMeeting";
 import MeetingDetails from "pages/MeetingDetails";
 import AddUsers from "pages/AddUsers";
-import NewReservation from "pages/NewReservation";
 
 const ProjectRoutes = () => {
   return (
@@ -29,7 +28,6 @@ const ProjectRoutes = () => {
       <Route path="Meetings" element={<Meetings />} />
       <Route path="AddMeeting" element={<AddMeeting />} />
       <Route path="MeetingDetails" element={<MeetingDetails />} />
-      <Route path="NewReservation" element={<NewReservation />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

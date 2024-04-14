@@ -1,12 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import { Helmet } from "react-helmet";
 import { Button, CheckBox, Input, Heading } from "../../components";
 import { useNavigate } from "react-router-dom";
 
 export default function LOGINPage() {
   const navigate = useNavigate(); // Initialize useNavigate hook
-
+  const [email, setEmail] = useState(""); // State for email input
+  const [password, setPassword] = useState(""); // State for password input
+  
   const handleLogin = () => {
+    /*if (!email) {
+      alert("Please enter email."); // Show alert if email or password is empty
+      return;
+    }else if (!password){
+      alert("Please enter password."); // Show alert if email or password is empty
+      return;
+    }*/
     // Navigate to the home page upon login
     navigate("/home1");
   };
@@ -39,6 +48,8 @@ export default function LOGINPage() {
                   name="email"
                   placeholder="Email"
                   className="sm:pr-5 p-5"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <Input
                   shape="round"
@@ -46,6 +57,8 @@ export default function LOGINPage() {
                   name="password"
                   placeholder="Password"
                   className="mt-[22px] sm:pr-5 p-5"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="flex justify-between mt-8 ml-5 pb-[12px] gap-5 sm:pb-3 sm:pr-5">
                   <CheckBox

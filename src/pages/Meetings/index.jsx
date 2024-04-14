@@ -1,7 +1,6 @@
 import React, { useState }  from "react";
 import { Helmet } from "react-helmet";
-import { Button, Input, Heading } from "../../components";
-import { Link } from "react-router-dom";
+import { Button, Heading } from "../../components";
 import { useNavigate } from "react-router-dom";
 
 export default function ModifyUsers() {
@@ -18,17 +17,21 @@ export default function ModifyUsers() {
   }));
 
   // State for search value
-  const [searchValue, setSearchValue] = useState("");
+  const [meetingNameFilter, setMeetingNameFilter] = useState("");
+  const [typeFilter, setTypeFilter] = useState("");
+  const [dateFilter, setDateFilter] = useState("");
+  const [organizerEmailFilter, setOrganizerEmailFilter] = useState("");
 
   // Filtered data based on search value
   const filteredData = sampleData.filter(
     (item) =>
-      item.id.toString().includes(searchValue) ||
-      item.Meeting_Name.toLowerCase().includes(searchValue.toLowerCase())
+      item.Meeting_Name.toLowerCase().includes(meetingNameFilter.toLowerCase()) &&
+      item.Type.toLowerCase().includes(typeFilter.toLowerCase()) &&
+      item.Date.includes(dateFilter) &&
+      item.Organizer_Email.toLowerCase().includes(organizerEmailFilter.toLowerCase())
   );
 
   const navigate = useNavigate(); // Initialize useNavigate hook
-
   const handleLogin = () => {
     // Navigate to the home page upon login
     navigate("/AddMeeting");
@@ -73,31 +76,21 @@ export default function ModifyUsers() {
           </div>
         </header>
         <div className="p-5 ">
-          <div className="mb-4">
-            <Input
-              color="white_A700_01"
-              size="sm"
-              shape="square"
-              name="search"
-              placeholder="Search by Meeting ID or Name..."
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              className="w-[18%] mr-[26px] gap-[35px] tracking-[2.00px] uppercase border-black-900 border-2 border-solid"
-            />
-          </div>
-          <div className="ml-[1350px] mt-[-60px] mb-[15px]">
+          <div className="flex w-64 mb-4 ">
             <Button
-              onClick={handleLogin}
-              size="md"
-              leftIcon={<img
-                src="images/door.png"
-                alt="userfill_one"
-                className="self-stretch h-[30px] md:h-auto my-2"
-              />}
-              className="gap-[17px] sm:pr-5 tracking-[1.00px] font-roboto min-w-[179px] rounded-[24px]"
+                size="md"
+                leftIcon={
+                  <img
+                    src="images/door.png"
+                    alt="userfill_one"
+                    className="self-stretch h-[30px] md:h-auto my-2"
+                  />
+                }
+                className="gap-[17px] sm:pr-5 tracking-[1.00px] font-roboto w-full rounded-[24px]"
+                onClick={handleLogin}
               >
-              Add Meeting
-            </Button>
+                Add Meeting
+              </Button>
           </div>
           <div className="h-[635px] overflow-y-auto border border-gray-300 rounded">
             <table className="min-w-full divide-y divide-gray-200">
@@ -108,12 +101,36 @@ export default function ModifyUsers() {
                   </th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Meeting Name
+                    <select
+                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                      value={meetingNameFilter}
+                      onChange={(e) => setMeetingNameFilter(e.target.value)}
+                    >
+                      <option value="">All</option>
+                      <option value="pervasive">Pervasive</option>
+                      <option value="linux">Linux</option>
+                    </select>
                   </th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Type
+                    <select
+                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                      value={typeFilter}
+                      onChange={(e) => setTypeFilter(e.target.value)}
+                    >
+                      <option value="">All</option>
+                      <option value="lab">Lab</option>
+                      <option value="lecture">Lecture</option>
+                    </select>
                   </th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Date
+                    <input
+                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                      type="date"
+                      value={dateFilter}
+                      onChange={(e) => setDateFilter(e.target.value)}
+                    />
                   </th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Start Time
@@ -129,15 +146,23 @@ export default function ModifyUsers() {
                   </th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Organizer Email
+                    <select
+                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                      value={organizerEmailFilter}
+                      onChange={(e) => setOrganizerEmailFilter(e.target.value)}
+                    >
+                      <option value="">All</option>
+                      {Array.from(new Set(sampleData.map(item => item.Organizer_Email))).map(email => (
+                        <option key={email} value={email}>{email}</option>
+                      ))}
+                    </select>
                   </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {filteredData.map((row) => (
                   <tr key={row.id}>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                    <Link to={`../MeetingDetails`}>{row.id}</Link> {/* ${row.id}*/}
-                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">{row.id}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{row.Meeting_Name}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{row.Type}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{row.Date}</td>

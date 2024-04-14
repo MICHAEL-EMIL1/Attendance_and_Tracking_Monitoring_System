@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, {useState} from "react";
 import { Helmet } from "react-helmet";
-import { Button, Input, Heading } from "../../components";
+import { Button, Heading } from "../../components";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Page3monitroingPage() {
+  const navigate = useNavigate(); // Initialize useNavigate hook
+  const handleNavigate = () => {
+    // Navigate to the desired page
+    navigate('/AddRooms');
+  };
   const sampleData = Array.from({ length: 1000 }, (_, i) => ({
     id: i + 1,
     building: `Building ${Math.floor(Math.random() * 10) + 1}`,
@@ -17,61 +23,18 @@ export default function Page3monitroingPage() {
     status: Math.random() > 0.5 ? "Idle" : "Active",
   }));
 
-  const [searchValue, setSearchValue] = useState("");
   const [buildingFilter, setBuildingFilter] = useState("");
   const [floorFilter, setFloorFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
 
-  useEffect(() => {
-    getUniqueValuesFromColumn();
-  }, []);
-
-  const handleInputChange = (e) => {
-    setSearchValue(e.target.value);
-  };
-
-  const handleBuildingFilterChange = (e) => {
-    setBuildingFilter(e.target.value === "No Data" ? "" : e.target.value);
-  };
-
-  const handleFloorFilterChange = (e) => {
-    setFloorFilter(e.target.value === "No Data" ? "" : e.target.value);
-  };
-
-  const handleStatusFilterChange = (e) => {
-    setStatusFilter(e.target.value === "No Data" ? "" : e.target.value);
-  };
-
   const filteredData = sampleData.filter((item) => {
-    return (
-      item.name.toLowerCase().includes(searchValue.toLowerCase()) &&
-      (buildingFilter === "" || item.building === buildingFilter) &&
-      (floorFilter === "" || item.floor === floorFilter) &&
-      (statusFilter === "" || item.status === statusFilter)
-    );
+    const buildingg = buildingFilter === "" || item.building.toLowerCase().includes(buildingFilter.toLowerCase());
+    const floorr = floorFilter === "" || item.floor.toLowerCase() === floorFilter.toLowerCase();
+    const statuss = statusFilter === "" || item.status.toLowerCase().includes(statusFilter.toLowerCase());
+  
+    // Return true only if all conditions match
+    return buildingg && floorr && statuss;
   });
-
-  const getUniqueValuesFromColumn = () => {
-    const uniqueBuildingValues = ["", ...new Set(sampleData.map(item => item.building))];
-    const uniqueFloorValues = ["", ...new Set(sampleData.map(item => item.floor))];
-    const uniqueStatusValues = ["", ...new Set(sampleData.map(item => item.status))];
-
-    // Update select options
-    updateSelectOptions(uniqueBuildingValues, "#building-filter");
-    updateSelectOptions(uniqueFloorValues, "#floor-filter");
-    updateSelectOptions(uniqueStatusValues, "#status-filter");
-  };
-
-  const updateSelectOptions = (values, selector) => {
-    const selectElement = document.querySelector(selector);
-    selectElement.innerHTML = ""; // Clear existing options
-    values.forEach(value => {
-      const option = document.createElement("option");
-      option.value = value;
-      option.text = value;
-      selectElement.add(option);
-    });
-  };
 
   return (
     <>
@@ -107,22 +70,8 @@ export default function Page3monitroingPage() {
         </div>
       </header>
       <div className="p-5 ">
-        <div className="flex justify-between mb-4 ">
-          <div className="">
-            <Input
-              color="white_A700_01"
-              size="sm"
-              type="text"
-              shape="square"
-              name="search"
-              placeholder="Search by Room Name..."
-              value={searchValue}
-              onChange={handleInputChange}
-              className="mr-[26px] gap-[35px] tracking-[2.00px] uppercase border-black-900 border-2 border-solid"
-            />
-          </div>
-          <div className="">
-            <Button
+        <div className="flex w-64 mb-4 ">
+          <Button
               size="md"
               leftIcon={
                 <img
@@ -132,10 +81,10 @@ export default function Page3monitroingPage() {
                 />
               }
               className="gap-[17px] sm:pr-5 tracking-[1.00px] font-roboto w-full rounded-[24px]"
+              onClick={handleNavigate}
             >
               Add Rooms
-            </Button>
-          </div>
+          </Button>
         </div>
         <div className="h-[630px] overflow-y-auto border border-gray-300 rounded">
           <table className="min-w-full divide-y divide-gray-200">
@@ -146,14 +95,28 @@ export default function Page3monitroingPage() {
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Building
-                  <select id="building-filter" className="table-filter border-4 w-[50%] ml-[8px] pt-[2px]" onChange={handleBuildingFilterChange}>
-                    <option value="">No Data</option>
+                  <select
+                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                      value={buildingFilter }
+                      onChange={(e) => setBuildingFilter(e.target.value)}
+                    >
+                      <option value="">All</option>
+                      {Array.from(new Set(sampleData.map(item => item.building))).map(building => (
+                        <option key={building} value={building}>{building}</option>
+                      ))}
                   </select>
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Floor
-                  <select id="floor-filter" className="table-filter border-4 w-[50%] ml-[8px] pt-[2px]" onChange={handleFloorFilterChange}>
-                    <option value="">No Data</option>
+                  <select
+                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                      value={floorFilter}
+                      onChange={(e) => setFloorFilter(e.target.value)}
+                    >
+                      <option value="">All</option>
+                      {Array.from(new Set(sampleData.map(item => item.floor))).map(floor => (
+                        <option key={floor} value={floor}>{floor}</option>
+                      ))}
                   </select>
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -164,9 +127,15 @@ export default function Page3monitroingPage() {
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
-                  <select id="status-filter" className="table-filter border-4 w-[50%] ml-[8px] pt-[2px]" onChange={handleStatusFilterChange}>
-                    <option value="all">No Data</option>
-                  </select>
+                  <select
+                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                      value={statusFilter}
+                      onChange={(e) => setStatusFilter(e.target.value)}
+                    >
+                      <option value="">All</option>
+                      <option value="Active">Active</option>
+                      <option value="Idle">Idle</option>
+                    </select>
                 </th>
               </tr>
             </thead>

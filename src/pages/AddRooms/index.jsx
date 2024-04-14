@@ -27,6 +27,7 @@ export default function ModifyUsers() {
     if (isValid) {
       // Add your form submission logic here
       alert("Form submitted");
+      form.reset();
     }
   };
 

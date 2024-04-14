@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { Helmet } from "react-helmet";
-import { Button, Input, Heading } from "../../components";
-import { Link } from "react-router-dom";
+import { Button, Heading } from "../../components";
+import { useNavigate } from "react-router-dom";
 
 export default function Page3monitroingPage() {
+  const navigate = useNavigate(); // Initialize useNavigate hook
+  const handleNavigate = () => {
+    // Navigate to the desired page
+    navigate('/AddRooms');
+  };
   const sampleData = Array.from({ length: 1000 }, (_, i) => ({
     id: i + 1,
-    role: Math.random() > 0.5 ? "Admin" : "User",
+    role: Math.random() > 0.5 ? "Admin" : "Student",
     firstName: `First ${i + 1}`,
     middleName: `Middle ${i + 1}`,
     lastName: `Last ${i + 1}`,
@@ -16,76 +21,20 @@ export default function Page3monitroingPage() {
     token: `Token-${i + 1}`,
   }));
 
-  const [searchValue, setSearchValue] = useState("");
-  const [idFilter, setIdFilter] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
   const [firstNameFilter, setFirstNameFilter] = useState("");
-  const [middleNameFilter, setMiddleNameFilter] = useState("");
   const [emailFilter, setEmailFilter] = useState("");
 
-  useEffect(() => {
-    getUniqueValuesFromColumn();
-  }, []);
-
-  const handleInputChange = (e) => {
-    setSearchValue(e.target.value);
-  };
-
-  const handleIdFilterChange = (e) => {
-    setIdFilter(e.target.value);
-  };
-
-  const handleRoleFilterChange = (e) => {
-    setRoleFilter(e.target.value);
-  };
-
-  const handleFirstNameFilterChange = (e) => {
-    setFirstNameFilter(e.target.value);
-  };
-
-  const handleMiddleNameFilterChange = (e) => {
-    setMiddleNameFilter(e.target.value);
-  };
-
-  const handleEmailFilterChange = (e) => {
-    setEmailFilter(e.target.value);
-  };
-
   const filteredData = sampleData.filter((item) => {
-    return (
-      item.id.toString().includes(searchValue) &&
-      (idFilter === "" || item.id === idFilter) &&
-      (roleFilter === "" || item.role === roleFilter) &&
-      (firstNameFilter === "" || item.firstName === firstNameFilter) &&
-      (middleNameFilter === "" || item.middleName === middleNameFilter) &&
-      (emailFilter === "" || item.email === emailFilter)
-    );
+    // Check if there's a filter value for each field
+    const roleMatch = roleFilter === "" || item.role.toLowerCase().includes(roleFilter.toLowerCase());
+    const firstNameMatch = firstNameFilter === "" || item.firstName.toLowerCase() === firstNameFilter.toLowerCase();
+    const emailMatch = emailFilter === "" || item.email.toLowerCase().includes(emailFilter.toLowerCase());
+  
+    // Return true only if all conditions match
+    return roleMatch && firstNameMatch && emailMatch;
   });
-
-  const getUniqueValuesFromColumn = () => {
-    const uniqueIdValues = ["", ...new Set(sampleData.map(item => item.id))];
-    const uniqueRoleValues = ["", ...new Set(sampleData.map(item => item.role))];
-    const uniqueFirstNameValues = ["", ...new Set(sampleData.map(item => item.firstName))];
-    const uniqueMiddleNameValues = ["", ...new Set(sampleData.map(item => item.middleName))];
-    const uniqueEmailValues = ["", ...new Set(sampleData.map(item => item.email))];
-
-    updateSelectOptions(uniqueIdValues, "#id-filter");
-    updateSelectOptions(uniqueRoleValues, "#role-filter");
-    updateSelectOptions(uniqueFirstNameValues, "#firstname-filter");
-    updateSelectOptions(uniqueMiddleNameValues, "#middlename-filter");
-    updateSelectOptions(uniqueEmailValues, "#email-filter");
-  };
-
-  const updateSelectOptions = (values, selector) => {
-    const selectElement = document.querySelector(selector);
-    selectElement.innerHTML = ""; // Clear existing options
-    values.forEach(value => {
-      const option = document.createElement("option");
-      option.value = value;
-      option.text = value;
-      selectElement.add(option);
-    });
-  };
+  
 
   return (
     <>
@@ -102,9 +51,9 @@ export default function Page3monitroingPage() {
                   Home
                 </Heading>
               </a>
-              <a href="../Page3monitroingtimestampforallusers">
+              <a href="../Page3monitroing">
                 <Heading size="md" as="h4" className="self-start !text-gray-200_01 !font-saira">
-                  Monitoring Users
+                  Monitoring Room
                 </Heading>
               </a>
               <a href="../Meetings">
@@ -116,27 +65,13 @@ export default function Page3monitroingPage() {
             <div className="self-stretch h-px mt-[3px] bg-white-A700_01" />
           </div>
           <Heading size="lg" className="mt-3.5 mb-3.5 !text-white-A700_01 !font-saira">
-            Monitoring Rooms
+            Monitoring Users
           </Heading>
         </div>
       </header>
       <div className="p-5 ">
-        <div className="flex justify-between mb-4 ">
-          <div className="">
-            <Input
-              color="white_A700_01"
-              size="sm"
-              type="text"
-              shape="square"
-              name="search"
-              placeholder="Search by Room Name..."
-              value={searchValue}
-              onChange={handleInputChange}
-              className="mr-[26px] gap-[35px] tracking-[2.00px] uppercase border-black-900 border-2 border-solid"
-            />
-          </div>
-          <div className="">
-            <Button
+        <div className="flex w-64 mb-4 ">
+          <Button
               size="md"
               leftIcon={
                 <img
@@ -146,46 +81,60 @@ export default function Page3monitroingPage() {
                 />
               }
               className="gap-[17px] sm:pr-5 tracking-[1.00px] font-roboto w-full rounded-[24px]"
+              onClick={handleNavigate}
             >
-              Add Rooms
+              Add Users
             </Button>
-          </div>
         </div>
         <div className="h-[630px] overflow-y-auto border border-gray-300 rounded">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="sticky top-0 bg-gray-50">
               <tr>
-                <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   ID
-                  <select id="id-filter" className="table-filter border-4 w-[60px] ml-[6px] pt-[2px] pl-[2px]" onChange={handleIdFilterChange}>
-                    <option value="No Data">No Data</option>
-                  </select>
                 </th>
-                <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Role
-                  <select id="role-filter" className="table-filter border-4 w-[100px] ml-[5px] pt-[2px]" onChange={handleRoleFilterChange}>
-                    <option value="No Data">No Data</option>
+                  <select
+                      className="px-2 py-1 ml-1 border border-gray-300 rounded-md"
+                      value={roleFilter}
+                      onChange={(e) => setRoleFilter(e.target.value)}
+                    >
+                      <option value="">All</option>
+                      <option value="Admin">Admin</option>
+                      <option value="Student">Student</option>
                   </select>
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   First
-                  <select id="firstname-filter" className="table-filter border-4 w-[60%] ml-[5px] pt-[2px]" onChange={handleFirstNameFilterChange}>
-                    <option value="No Data">No Data</option>
+                  <select
+                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                      value={firstNameFilter}
+                      onChange={(e) => setFirstNameFilter(e.target.value)}
+                    >
+                      <option value="">All</option>
+                      {Array.from(new Set(sampleData.map(item => item.firstName))).map(firstName => (
+                        <option key={firstName} value={firstName}>{firstName}</option>
+                      ))}
                   </select>
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Middle
-                  <select id="middlename-filter" className="table-filter border-4 w-[60%] ml-[12px] pt-[2px]" onChange={handleMiddleNameFilterChange}>
-                    <option value="No Data">No Data</option>
-                  </select>
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Last 
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Email
-                  <select id="email-filter" className="table-filter border-4 w-[60%] ml-[12px] pt-[2px]" onChange={handleEmailFilterChange}>
-                    <option value="No Data">No Data</option>
+                  <select
+                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                      value={emailFilter}
+                      onChange={(e) => setEmailFilter(e.target.value)}
+                    >
+                      <option value="">All</option>
+                      {Array.from(new Set(sampleData.map(item => item.email))).map(email => (
+                        <option key={email} value={email}>{email}</option>
+                      ))}
                   </select>
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
