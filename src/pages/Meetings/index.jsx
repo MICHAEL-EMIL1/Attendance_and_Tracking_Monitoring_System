@@ -1,6 +1,6 @@
 import React, { useState }  from "react";
 import { Helmet } from "react-helmet";
-import { Button, Heading } from "../../components";
+import { Button, Input, Heading } from "../../components";
 import { useNavigate } from "react-router-dom";
 
 export default function ModifyUsers() {
@@ -16,6 +16,7 @@ export default function ModifyUsers() {
     Organizer_Email:`email${i + 1}@example.com`,
   }));
 
+  const [searchValue, setSearchValue] = useState("");
   // State for search value
   const [meetingNameFilter, setMeetingNameFilter] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
@@ -25,6 +26,7 @@ export default function ModifyUsers() {
   // Filtered data based on search value
   const filteredData = sampleData.filter(
     (item) =>
+      item.id.toString().includes(searchValue) ||
       item.Meeting_Name.toLowerCase().includes(meetingNameFilter.toLowerCase()) &&
       item.Type.toLowerCase().includes(typeFilter.toLowerCase()) &&
       item.Date.includes(dateFilter) &&
@@ -62,11 +64,6 @@ export default function ModifyUsers() {
                     Monitoring Users
                   </Heading>
                 </a>
-                {/*<a href="../NewReservation">
-                  <Heading size="md" as="h4" className="!text-gray-300 !font-saira">
-                    New Reservation
-                  </Heading>
-                </a>*/}
               </div>
               <div className="self-stretch h-px mt-[3px] bg-white-A700_01" />
             </div>
@@ -75,107 +72,121 @@ export default function ModifyUsers() {
             </Heading>
           </div>
         </header>
-        <div className="p-5 ">
-          <div className="flex w-64 mb-4 ">
+        <div className="flex justify-between mb-4 mt-4 mr-[50px]">
+          <div>
+            <Input
+              color="white_A700_01"
+              size="sm"
+              shape="square"
+              name="search"
+              placeholder="Search by Meeting ID"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              className=" ml-[25px] tracking-[2.00px] uppercase border-black-900 border-2 border-solid"
+            />
+          </div>
+          <div>
             <Button
                 size="md"
                 leftIcon={
                   <img
                     src="images/door.png"
                     alt="userfill_one"
-                    className="self-stretch h-[30px] md:h-auto my-2"
+                    className="mr-[10px] self-stretch h-[30px] md:h-auto my-2"
                   />
                 }
-                className="gap-[17px] sm:pr-5 tracking-[1.00px] font-roboto w-full rounded-[24px]"
+                className="sm:pr-5 tracking-[1.00px] font-roboto w-full rounded-[24px]"
                 onClick={handleLogin}
               >
                 Add Meeting
-              </Button>
+            </Button>
           </div>
-          <div className="h-[635px] overflow-y-auto border border-gray-300 rounded">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="sticky top-0 bg-gray-50">
-                <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Meeting ID
-                  </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Meeting Name
-                    <select
-                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
-                      value={meetingNameFilter}
-                      onChange={(e) => setMeetingNameFilter(e.target.value)}
-                    >
-                      <option value="">All</option>
-                      <option value="pervasive">Pervasive</option>
-                      <option value="linux">Linux</option>
-                    </select>
-                  </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Type
-                    <select
-                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
-                      value={typeFilter}
-                      onChange={(e) => setTypeFilter(e.target.value)}
-                    >
-                      <option value="">All</option>
-                      <option value="lab">Lab</option>
-                      <option value="lecture">Lecture</option>
-                    </select>
-                  </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Date
-                    <input
-                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
-                      type="date"
-                      value={dateFilter}
-                      onChange={(e) => setDateFilter(e.target.value)}
-                    />
-                  </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Start Time
-                  </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    End Time
-                  </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Course Name
-                  </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Room Name
-                  </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Organizer Email
-                    <select
-                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
-                      value={organizerEmailFilter}
-                      onChange={(e) => setOrganizerEmailFilter(e.target.value)}
-                    >
-                      <option value="">All</option>
-                      {Array.from(new Set(sampleData.map(item => item.Organizer_Email))).map(email => (
-                        <option key={email} value={email}>{email}</option>
-                      ))}
-                    </select>
-                  </th>
+        </div>
+        <div className="h-[682px] mr-[5px] ml-[5px] overflow-y-auto border border-gray-300 rounded">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="sticky top-0 bg-gray-50">
+              <tr>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Meeting ID
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Meeting Name
+                  <select
+                    className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                    value={meetingNameFilter}
+                    onChange={(e) => setMeetingNameFilter(e.target.value)}
+                  >
+                    <option value="">All</option>
+                    <option value="pervasive">Pervasive</option>
+                    <option value="linux">Linux</option>
+                  </select>
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Type
+                  <select
+                    className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                    value={typeFilter}
+                    onChange={(e) => setTypeFilter(e.target.value)}
+                  >
+                    <option value="">All</option>
+                    <option value="lab">Lab</option>
+                    <option value="lecture">Lecture</option>
+                  </select>
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Date
+                  <input
+                    className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                    type="date"
+                    value={dateFilter}
+                    onChange={(e) => setDateFilter(e.target.value)}
+                  />
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Start Time
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  End Time
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Course Name
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Room Name
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Organizer Email
+                  <select
+                    className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                    value={organizerEmailFilter}
+                    onChange={(e) => setOrganizerEmailFilter(e.target.value)}
+                  >
+                    <option value="">All</option>
+                    {Array.from(new Set(sampleData.map(item => item.Organizer_Email))).map(email => (
+                      <option key={email} value={email}>{email}</option>
+                    ))}
+                  </select>
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {filteredData.map((row) => (
+                <tr key={row.id}>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <a href="../MeetingDetails">{row.id}</a>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.Meeting_Name}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.Type}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.Date}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.Start_Time}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.End_Time}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.Course_Name}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.Room_Name}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{row.Organizer_Email}</td>
                 </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {filteredData.map((row) => (
-                  <tr key={row.id}>
-                    <td className="px-6 py-4 whitespace-nowrap">{row.id}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{row.Meeting_Name}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{row.Type}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{row.Date}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{row.Start_Time}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{row.End_Time}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{row.Course_Name}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{row.Room_Name}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{row.Organizer_Email}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </>

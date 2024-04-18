@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { Helmet } from "react-helmet";
-import { Button, Heading } from "../../components";
+import { Button, Input, Heading } from "../../components";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -22,7 +22,7 @@ export default function Page3monitroingPage() {
     ) + 1}`,
     status: Math.random() > 0.5 ? "Idle" : "Active",
   }));
-
+  const [searchValue, setSearchValue] = useState("");
   const [buildingFilter, setBuildingFilter] = useState("");
   const [floorFilter, setFloorFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
@@ -69,92 +69,104 @@ export default function Page3monitroingPage() {
           </Heading>
         </div>
       </header>
-      <div className="p-5 ">
-        <div className="flex w-64 mb-4 ">
-          <Button
-              size="md"
-              leftIcon={
-                <img
-                  src="images/door.png"
-                  alt="userfill_one"
-                  className="self-stretch h-[30px] md:h-auto my-2"
-                />
-              }
-              className="gap-[17px] sm:pr-5 tracking-[1.00px] font-roboto w-full rounded-[24px]"
-              onClick={handleNavigate}
-            >
-              Add Rooms
-          </Button>
+      <div className="flex justify-between mb-4 mt-4 mr-[50px]">
+          <div>
+            <Input
+              color="white_A700_01"
+              size="sm"
+              shape="square"
+              name="search"
+              placeholder="Search by Room ID"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              className=" ml-[25px] tracking-[2.00px] uppercase border-black-900 border-2 border-solid"
+            />
+          </div>
+          <div>
+            <Button
+                size="md"
+                leftIcon={
+                  <img
+                    src="images/door.png"
+                    alt="userfill_one"
+                    className="mr-[10px] self-stretch h-[30px] md:h-auto my-2"
+                  />
+                }
+                className="sm:pr-5 tracking-[1.00px] font-roboto w-full rounded-[24px]"
+                onClick={handleNavigate}
+              >
+                Add Room
+            </Button>
+          </div>
         </div>
-        <div className="h-[630px] overflow-y-auto border border-gray-300 rounded">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="sticky top-0 bg-gray-50">
-              <tr>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  ID
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Building
-                  <select
-                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
-                      value={buildingFilter }
-                      onChange={(e) => setBuildingFilter(e.target.value)}
-                    >
-                      <option value="">All</option>
-                      {Array.from(new Set(sampleData.map(item => item.building))).map(building => (
-                        <option key={building} value={building}>{building}</option>
-                      ))}
+      <div className="h-[684px] ml-[5px] mr-[5px] overflow-y-auto border border-gray-300 rounded">
+        <table className="min-w-full divide-y divide-gray-200">
+          <thead className="sticky top-0 bg-gray-50">
+            <tr>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                ID
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Building
+                <select
+                    className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                    value={buildingFilter }
+                    onChange={(e) => setBuildingFilter(e.target.value)}
+                  >
+                    <option value="">All</option>
+                    {Array.from(new Set(sampleData.map(item => item.building))).map(building => (
+                      <option key={building} value={building}>{building}</option>
+                    ))}
+                </select>
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Floor
+                <select
+                    className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                    value={floorFilter}
+                    onChange={(e) => setFloorFilter(e.target.value)}
+                  >
+                    <option value="">All</option>
+                    {Array.from(new Set(sampleData.map(item => item.floor))).map(floor => (
+                      <option key={floor} value={floor}>{floor}</option>
+                    ))}
+                </select>
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Name
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                IP
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Status
+                <select
+                    className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                    value={statusFilter}
+                    onChange={(e) => setStatusFilter(e.target.value)}
+                  >
+                    <option value="">All</option>
+                    <option value="Active">Active</option>
+                    <option value="Idle">Idle</option>
                   </select>
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Floor
-                  <select
-                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
-                      value={floorFilter}
-                      onChange={(e) => setFloorFilter(e.target.value)}
-                    >
-                      <option value="">All</option>
-                      {Array.from(new Set(sampleData.map(item => item.floor))).map(floor => (
-                        <option key={floor} value={floor}>{floor}</option>
-                      ))}
-                  </select>
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Name
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  IP
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Status
-                  <select
-                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
-                      value={statusFilter}
-                      onChange={(e) => setStatusFilter(e.target.value)}
-                    >
-                      <option value="">All</option>
-                      <option value="Active">Active</option>
-                      <option value="Idle">Idle</option>
-                    </select>
-                </th>
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {filteredData.map((row) => (
+              <tr key={row.id}>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <Link to={`../ModifyRooms`}>{row.id}</Link>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">{row.building}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{row.floor}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{row.name}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{row.IP}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{row.status}</td>
               </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {filteredData.map((row) => (
-                <tr key={row.id}>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <Link to={`../ModifyRooms`}>{row.id}</Link>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">{row.building}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{row.floor}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{row.name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{row.IP}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{row.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );

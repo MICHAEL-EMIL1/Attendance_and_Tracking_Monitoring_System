@@ -1,13 +1,13 @@
 import React, { useState} from "react";
 import { Helmet } from "react-helmet";
-import { Button, Heading } from "../../components";
+import { Button, Input, Heading } from "../../components";
 import { useNavigate } from "react-router-dom";
 
 export default function Page3monitroingPage() {
   const navigate = useNavigate(); // Initialize useNavigate hook
   const handleNavigate = () => {
     // Navigate to the desired page
-    navigate('/AddRooms');
+    navigate('/AddUsers');
   };
   const sampleData = Array.from({ length: 1000 }, (_, i) => ({
     id: i + 1,
@@ -16,11 +16,11 @@ export default function Page3monitroingPage() {
     middleName: `Middle ${i + 1}`,
     lastName: `Last ${i + 1}`,
     email: `email${i + 1}@example.com`,
-    password: `password${i + 1}`,
     ssn: `SSN-${i + 1}`,
     token: `Token-${i + 1}`,
   }));
 
+  const [searchValue, setSearchValue] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
   const [firstNameFilter, setFirstNameFilter] = useState("");
   const [emailFilter, setEmailFilter] = useState("");
@@ -69,102 +69,110 @@ export default function Page3monitroingPage() {
           </Heading>
         </div>
       </header>
-      <div className="p-5 ">
-        <div className="flex w-64 mb-4 ">
-          <Button
-              size="md"
-              leftIcon={
-                <img
-                  src="images/door.png"
-                  alt="userfill_one"
-                  className="self-stretch h-[30px] md:h-auto my-2"
-                />
-              }
-              className="gap-[17px] sm:pr-5 tracking-[1.00px] font-roboto w-full rounded-[24px]"
-              onClick={handleNavigate}
-            >
-              Add Users
+      <div className="flex justify-between mb-4 mt-4 mr-[50px]">
+          <div>
+            <Input
+              color="white_A700_01"
+              size="sm"
+              shape="square"
+              name="search"
+              placeholder="Search by User ID"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              className=" ml-[25px] tracking-[2.00px] uppercase border-black-900 border-2 border-solid"
+            />
+          </div>
+          <div>
+            <Button
+                size="md"
+                leftIcon={
+                  <img
+                    src="images/door.png"
+                    alt="userfill_one"
+                    className="mr-[10px] self-stretch h-[30px] md:h-auto my-2"
+                  />
+                }
+                className="sm:pr-5 tracking-[1.00px] font-roboto w-full rounded-[24px]"
+                onClick={handleNavigate}
+              >
+                Add Users
             </Button>
+          </div>
         </div>
-        <div className="h-[630px] overflow-y-auto border border-gray-300 rounded">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="sticky top-0 bg-gray-50">
-              <tr>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  ID
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Role
-                  <select
-                      className="px-2 py-1 ml-1 border border-gray-300 rounded-md"
-                      value={roleFilter}
-                      onChange={(e) => setRoleFilter(e.target.value)}
-                    >
-                      <option value="">All</option>
-                      <option value="Admin">Admin</option>
-                      <option value="Student">Student</option>
-                  </select>
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  First
-                  <select
-                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
-                      value={firstNameFilter}
-                      onChange={(e) => setFirstNameFilter(e.target.value)}
-                    >
-                      <option value="">All</option>
-                      {Array.from(new Set(sampleData.map(item => item.firstName))).map(firstName => (
-                        <option key={firstName} value={firstName}>{firstName}</option>
-                      ))}
-                  </select>
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Middle
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Last 
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Email
-                  <select
-                      className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
-                      value={emailFilter}
-                      onChange={(e) => setEmailFilter(e.target.value)}
-                    >
-                      <option value="">All</option>
-                      {Array.from(new Set(sampleData.map(item => item.email))).map(email => (
-                        <option key={email} value={email}>{email}</option>
-                      ))}
-                  </select>
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Password
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  SSN
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Token
-                </th>
+      <div className="h-[683px] mr-[5px] ml-[5px] overflow-y-auto border border-gray-300 rounded">
+        <table className="min-w-full divide-y divide-gray-200">
+          <thead className="sticky top-0 bg-gray-50">
+            <tr>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                ID
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Role
+                <select
+                    className="px-2 py-1 ml-1 border border-gray-300 rounded-md"
+                    value={roleFilter}
+                    onChange={(e) => setRoleFilter(e.target.value)}
+                  >
+                    <option value="">All</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Student">Student</option>
+                </select>
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                First
+                <select
+                    className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                    value={firstNameFilter}
+                    onChange={(e) => setFirstNameFilter(e.target.value)}
+                  >
+                    <option value="">All</option>
+                    {Array.from(new Set(sampleData.map(item => item.firstName))).map(firstName => (
+                      <option key={firstName} value={firstName}>{firstName}</option>
+                    ))}
+                </select>
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Middle
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Last 
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Email
+                <select
+                    className="px-2 py-1 ml-2 border border-gray-300 rounded-md"
+                    value={emailFilter}
+                    onChange={(e) => setEmailFilter(e.target.value)}
+                  >
+                    <option value="">All</option>
+                    {Array.from(new Set(sampleData.map(item => item.email))).map(email => (
+                      <option key={email} value={email}>{email}</option>
+                    ))}
+                </select>
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                SSN
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Token
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {filteredData.map((row) => (
+              <tr key={row.id}>
+                <td className="px-6 py-4 whitespace-nowrap">{row.id}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{row.role}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{row.firstName}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{row.middleName}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{row.lastName}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{row.email}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{row.ssn}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{row.token}</td>
               </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {filteredData.map((row) => (
-                <tr key={row.id}>
-                  <td className="px-6 py-4 whitespace-nowrap">{row.id}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{row.role}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{row.firstName}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{row.middleName}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{row.lastName}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{row.email}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{row.password}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{row.ssn}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{row.token}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );

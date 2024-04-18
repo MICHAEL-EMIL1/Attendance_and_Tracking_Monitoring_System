@@ -166,7 +166,6 @@ export default function ModifyUsers() {
                     <option value=""></option>
                       <option value="admin">Admin</option>
                       <option value="user">User</option>
-                      <option value="guest">Guest</option>
                       <option value="Student">Student</option>
                     </select>
                   </div>

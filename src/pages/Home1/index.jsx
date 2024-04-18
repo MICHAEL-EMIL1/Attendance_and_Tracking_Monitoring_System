@@ -23,14 +23,14 @@ export default function Home1Page() {
           className="flex flex-col h-screen top-0 md:pb-5  border-black-900 border border-solid bg-indigo-800_01 shadow-xl !sticky overflow-auto"
         >
           <div className="flex flex-col self-stretch items-start">
-            <Heading size="lg" as="h2" className="ml-[15px] mt-[5px] !text-white-A700_01 !font-segoeui">
+            <Heading size="lg" as="h2" className="ml-[15px] mt-[20px] !text-white-A700_01 !font-segoeui">
               Smart Access Control System{" "}
             </Heading>
             <Menu
               menuItemStyles={{
                 button: {
                   padding: "7px",
-                  gap: "12px",
+                  gap: "8px",
                   alignSelf: "start",
                   color: "#ffffff",
                   fontWeight: 600,
@@ -41,7 +41,7 @@ export default function Home1Page() {
               className="flex flex-col self-center items-center w-full mt-[80px]"
             >
               <MenuItem icon={<Img src="images/img_darhboard.svg" alt="dashboard_one" className="h-[24px] w-[24px]" />}>
-                <a href="../Page3monitroing" className="w-[200px]">Monitoring Rooms</a>
+                <a href="../Page3monitroing" className="w-[230px]">Monitoring Rooms</a>
               </MenuItem>
               <MenuItem icon={<Img src="images/img_darhboard.svg" alt="dashboard_one" className="h-[24px] w-[24px]" />}>
                 <a href="../page3monitroingtimestampforallusers" className="w-[200px]">Monitoring Users</a>
@@ -49,9 +49,6 @@ export default function Home1Page() {
               <MenuItem icon={<Img src="images/img_darhboard.svg" alt="image" className="h-[24px] w-[24px]" />}>
                 <a href="../Meetings" className="w-[200px]">Meetings</a>
               </MenuItem>
-              {/*<MenuItem icon={<Img src="images/img_desk_alt.svg" alt="deskalt_one" className="h-[24px] w-[24px]" />}>
-                <a href="../NewReservation" className="w-[200px]">New Reservation</a>
-                </MenuItem>*/}
               <MenuItem icon={<Img src="images/img_signoutsqure.svg" alt="deskalt_one" className="h-[24px] w-[24px]" />}>
                 <a href="/" className="w-[200px]">logout</a>
               </MenuItem>

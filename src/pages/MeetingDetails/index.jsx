@@ -86,11 +86,7 @@ export default function ModifyUsers() {
                 </Heading>
             </div>
         </header>
-        <div className="flex space-x-2 p-5">
-            <Text>Meeting ID: </Text>
-            <Text>1</Text>
-        </div>
-        <div className="h-[615px] overflow-y-auto border m-[10px] mt-[2px] border-gray-300 rounded">
+        <div className="h-[730px] overflow-y-auto border m-[7px] mt-[50px] border-gray-300 rounded">
             <table className="min-w-full divide-y divide-gray-200">
                 <thead className="sticky top-0 bg-gray-50">
                     <tr>
